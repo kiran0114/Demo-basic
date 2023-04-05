@@ -1,5 +1,9 @@
 name: 'Link Checker: All English'
 
+# **What it does**: Renders the content of every page and check all internal links.
+# **Why we have it**: To make sure all links connect correctly.
+# **Who does it impact**: Docs content.
+
 on:
   workflow_dispatch:
   push:
@@ -9,8 +13,10 @@ on:
 
 permissions:
   contents: read
-   pull-requests: read
+  # Needed for the 'trilom/file-changes-action' action
+  pull-requests: read
 
+# This allows a subsequently queued workflow run to interrupt previous runs
 concurrency:
   group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
   cancel-in-progress: true
@@ -31,11 +37,13 @@ jobs:
       - name: Install
         run: npm ci
 
+      # Creates file "$/files.json", among others
       - name: Gather files changed
         uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b
         with:
           fileOutput: 'json'
 
+      # For verification
       - name: Show files changed
         run: cat $HOME/files.json
 
