@@ -1,9 +1,19 @@
 name: Context
-on: push
+on: [push, pull_request]
 
-job:
+jobs:
+  functions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dump
+        run:
+          echo ${{ contains( 'Hello', '11')}}
+          echo ${{ startsWith( 'Hello', '11')}}
+          echo ${{ endsWith( 'Hello', '11')}}
+          echo ${{ format( 'Hello {1} {2} {3}', 'word', '!', '!')}}  
   one:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
       -name: Dump Github context
         env:
