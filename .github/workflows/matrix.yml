@@ -8,7 +8,7 @@ jobs:
       - name: Log node version
         run: node -v
       - uses: actions/setup-node@v1
-        with
+        with:
           node version: 6
       - name: Log node version
         run: node -v    
