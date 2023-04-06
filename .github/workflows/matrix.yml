@@ -13,6 +13,10 @@ jobs:
         run: node -v
       - uses: actions/setup-node@v1
         with:
+<<<<<<< HEAD
           node version: ${{matrix.node_version}}
+=======
+          node version: 6
+>>>>>>> 134ab2240944d07dc85f584e53e6769bbbfdf09b
       - name: Log node version
         run: node -v    
