@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       app:
-        image: alialaa17/node-version        
+        image:         
         ports:
           - 3001:3000
       mongo:
